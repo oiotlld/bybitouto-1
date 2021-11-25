@@ -405,9 +405,9 @@ while True:
         
         #지정가 청산주문
         if time_s == 2 or time_s==10 or time_s==20 or time_s==30 or time_s==40 or time_s==50:
-            print(client.LinearOrder.LinearOrder_new(side="Sell",symbol=ticker,order_type="Limit",qty=buy_size,price = buy_entry_price+0.0003,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())
+            print(client.LinearOrder.LinearOrder_new(side="Sell",symbol=ticker,order_type="Limit",qty=buy_size_4,price = buy_entry_price+0.0003,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())
             
-            print(client.LinearOrder.LinearOrder_new(side="Buy",symbol=ticker,order_type="Limit",qty=sell_size,price = sell_entry_price-0.0003,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())    
+            print(client.LinearOrder.LinearOrder_new(side="Buy",symbol=ticker,order_type="Limit",qty=sell_size_4,price = sell_entry_price-0.0003,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())    
         else:
             pass
     
@@ -416,12 +416,12 @@ while True:
         
         #  시장가 청산하기    5틱 수익이나면 청산
         if now_close >= buy_entry_price+0.0002 and buy_size_d > gty_c:
-            print(client.LinearOrder.LinearOrder_new(side="Sell",symbol=ticker,order_type="Market",qty=round(buy_size/2,0) ,price = buy_entry_price,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())    
+            print(client.LinearOrder.LinearOrder_new(side="Sell",symbol=ticker,order_type="Market",qty=buy_size_4 ,price = buy_entry_price,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())    
         else:
             pass
         
         if now_close <= sell_entry_price-0.0002 and sell_size_d > gty_c:
-            print(client.LinearOrder.LinearOrder_new(side="Buy",symbol=ticker,order_type="Market",qty=round(sell_size/2,0),price = sell_entry_price,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())    
+            print(client.LinearOrder.LinearOrder_new(side="Buy",symbol=ticker,order_type="Market",qty=sell_size_4,price = sell_entry_price,time_in_force="GoodTillCancel",reduce_only=True, close_on_trigger=False).result())    
         else:
             pass
         
